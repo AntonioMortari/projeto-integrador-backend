@@ -9,4 +9,9 @@ import com.projetointegrador.backend.entities.Client;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, String> {
+	
+	public Client findByCpf(String cpf);
+	
+	public Client findByEmail(String email);
+	
 }
