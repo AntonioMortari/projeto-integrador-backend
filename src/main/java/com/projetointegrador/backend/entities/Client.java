@@ -1,9 +1,13 @@
 package com.projetointegrador.backend.entities;
 
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "tb_client")
 public class Client {
@@ -15,6 +19,10 @@ public class Client {
 	private String cep;
 	private String contact;
 	private String emergency_contact;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Address> addresses;
+	
 	
 	public Client() {
 		
@@ -28,6 +36,7 @@ public class Client {
 		this.contact = contact;
 		this.emergency_contact = emergency_contact;
 	}
+	
 
 	public String getCpf() {
 		return cpf;
@@ -76,6 +85,12 @@ public class Client {
 	public void setEmergency_contact(String emergency_contact) {
 		this.emergency_contact = emergency_contact;
 	}
+	
+	
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
 
 	@Override
 	public int hashCode() {
