@@ -5,6 +5,8 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,7 +14,8 @@ import jakarta.persistence.ManyToOne;
 @Entity(name = "tb_address")
 public class Address {
 
-	@Id
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String cep;
 	private String street;
 	private String city;
@@ -26,21 +29,14 @@ public class Address {
 	
 	public Address() {
 	}
-
-	public Address(String cep, String street, String city, int number, String state, String district) {
-		super();
-		this.cep = cep;
-		this.street = street;
-		this.city = city;
-		this.number = number;
-		this.state = state;
-		this.district = district;
-	}
 	
 	
-
-	public Address(String cep, String street, String city, int number, String state, String district, Client client) {
+	
+	
+	public Address(Long id, String cep, String street, String city, int number, String state, String district,
+			Client client) {
 		super();
+		this.id = id;
 		this.cep = cep;
 		this.street = street;
 		this.city = city;
@@ -49,6 +45,36 @@ public class Address {
 		this.district = district;
 		this.client = client;
 	}
+
+
+
+
+	public Address(String cep, String street, String city, int number, String state, String district,
+			Client client) {
+		this.cep = cep;
+		this.street = street;
+		this.city = city;
+		this.number = number;
+		this.state = state;
+		this.district = district;
+		this.client = client;
+	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
 
 	public String getCep() {
 		return cep;
