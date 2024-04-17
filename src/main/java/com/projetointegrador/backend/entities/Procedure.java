@@ -27,6 +27,14 @@ public class Procedure {
 		this.price = price;
 		this.duration = duration;
 	}
+	
+	public Procedure(String name, String description, float price, float duration) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.duration = duration;
+	}
+	
 	public Long getId() {
 		return id;
 	}

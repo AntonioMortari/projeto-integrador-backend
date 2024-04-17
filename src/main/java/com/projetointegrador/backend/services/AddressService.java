@@ -35,7 +35,7 @@ public class AddressService {
 	}
 	
 	public void delete(Long id) {
-		Address findAddress = repository.findById(id)
+		repository.findById(id)
 			    .orElseThrow(() -> new NotFoundException("Address not found"));
 		
 		repository.deleteById(id);
