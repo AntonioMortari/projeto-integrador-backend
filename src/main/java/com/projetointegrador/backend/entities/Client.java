@@ -3,6 +3,7 @@ package com.projetointegrador.backend.entities;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -13,8 +14,10 @@ public class Client {
 	@Id
 	private String cpf;
 	private String name;
+	
+	@Column(unique = true)
 	private String email;
-	private String cep;
+	
 	private String contact;
 	private String emergency_contact;
 	
@@ -26,11 +29,10 @@ public class Client {
 		
 	}
 
-	public Client(String cpf, String name, String email, String cep, String contact, String emergency_contact) {
+	public Client(String cpf, String name, String email, String contact, String emergency_contact) {
 		this.cpf = cpf;
 		this.name = name;
 		this.email = email;
-		this.cep = cep;
 		this.contact = contact;
 		this.emergency_contact = emergency_contact;
 	}
@@ -58,14 +60,6 @@ public class Client {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
 	}
 
 	public String getContact() {

@@ -66,7 +66,6 @@ public class ClientService {
 		findClient.setEmail(obj.getEmail());
 		findClient.setContact(obj.getContact());
 		findClient.setEmergency_contact(obj.getEmergency_contact());
-		findClient.setCep(obj.getCep());
 	}
 	
 
