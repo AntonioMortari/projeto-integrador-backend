@@ -1,12 +1,17 @@
 package com.projetointegrador.backend.entities;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "tb_homecare")
 public class HomeCare {
@@ -17,6 +22,9 @@ public class HomeCare {
 	private Date startAt;
 	private Date finishAt;
 	private String indications;
+	
+	@OneToMany(mappedBy = "homecare")
+	private List<Treatment> treatments = new ArrayList<Treatment>();
 	
 	public HomeCare() {
 		super();
@@ -59,6 +67,12 @@ public class HomeCare {
 	public void setIndications(String indications) {
 		this.indications = indications;
 	}
+	
+	@JsonIgnore
+	public List<Treatment> getTreatments() {
+		return treatments;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

@@ -1,12 +1,17 @@
 package com.projetointegrador.backend.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "tb_professional")
 public class Professional {
@@ -19,6 +24,9 @@ public class Professional {
 	private String login;
 	private String password;
 	private String email;
+	
+	@OneToMany(mappedBy = "professional")
+	private List<Treatment> treatments = new ArrayList<Treatment>();
 	
 	public Professional() {
 		
@@ -67,6 +75,11 @@ public class Professional {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	@JsonIgnore
+	public List<Treatment> getTreatments() {
+		return treatments;
 	}
 	@Override
 	public int hashCode() {

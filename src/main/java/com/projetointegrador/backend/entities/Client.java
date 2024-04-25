@@ -1,7 +1,10 @@
 package com.projetointegrador.backend.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,6 +26,9 @@ public class Client {
 	
 	@OneToMany(mappedBy = "client")
 	private List<Address> addresses;
+	
+	@OneToMany(mappedBy = "client")
+	private List<Treatment> treatments = new ArrayList<Treatment>();
 	
 	
 	public Client() {
@@ -83,6 +89,11 @@ public class Client {
 		return addresses;
 	}
 
+
+	@JsonIgnore
+	public List<Treatment> getTreatments() {
+		return treatments;
+	}
 
 	@Override
 	public int hashCode() {

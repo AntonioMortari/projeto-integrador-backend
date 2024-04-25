@@ -13,11 +13,14 @@ import com.projetointegrador.backend.entities.Client;
 import com.projetointegrador.backend.entities.HomeCare;
 import com.projetointegrador.backend.entities.Procedure;
 import com.projetointegrador.backend.entities.Professional;
+import com.projetointegrador.backend.entities.Treatment;
+import com.projetointegrador.backend.enums.PaymentMethods;
 import com.projetointegrador.backend.repositories.AddressRepository;
 import com.projetointegrador.backend.repositories.ClientRepository;
 import com.projetointegrador.backend.repositories.HomeCareRepository;
 import com.projetointegrador.backend.repositories.ProcedureRepository;
 import com.projetointegrador.backend.repositories.ProfessionalRepository;
+import com.projetointegrador.backend.repositories.TreatmentRepository;
 
 @Configuration
 @Profile("development")
@@ -37,6 +40,9 @@ public class DevConfig implements CommandLineRunner {
 	
 	@Autowired
 	private HomeCareRepository homeCareRepository;
+	
+	@Autowired
+	private TreatmentRepository treatmentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -59,12 +65,15 @@ public class DevConfig implements CommandLineRunner {
 		
 		HomeCare h1 = new HomeCare(new Date(), parsedDate, "Indicações");
 		
+		Treatment t1 = new Treatment(c1, pr1, new Date(), p1, PaymentMethods.CARTAO_DEBITO, "Observação", h1);
+		
 		
 		clientRepository.save(c1);
 		addressRepository.save(a1);
 		procedureRepository.save(p1);
 		professionalRepository.save(pr1);
 		homeCareRepository.save(h1);
+		treatmentRepository.save(t1);
 		
 	}
 

@@ -1,11 +1,16 @@
 package com.projetointegrador.backend.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "tb_procedure")
 public class Procedure {
@@ -16,6 +21,10 @@ public class Procedure {
 	private String description;
 	private float price;
 	private float duration;
+	
+	@OneToMany(mappedBy = "procedure")
+	private List<Treatment> treatments = new ArrayList<Treatment>();
+	
 	public Procedure() {
 		super();
 	}
@@ -64,6 +73,11 @@ public class Procedure {
 	}
 	public void setDuration(float duration) {
 		this.duration = duration;
+	}
+	
+	@JsonIgnore
+	public List<Treatment> getTreatments() {
+		return treatments;
 	}
 	@Override
 	public int hashCode() {

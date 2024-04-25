@@ -33,6 +33,15 @@ public class ClientController {
 		
 	}
 	
+	@GetMapping("/{cpf}")
+	public ResponseEntity<Client> show(@PathVariable String cpf){
+		
+		Client result = service.findOne(cpf);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(result);
+		
+	}
+	
 	@PostMapping
 	public ResponseEntity<Client> store(@RequestBody Client client){
 		

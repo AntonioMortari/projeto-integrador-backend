@@ -22,6 +22,16 @@ public class ClientService {
 		
 	}
 	
+	public Client findOne(String cpf) {
+		Client result = repository.findByCpf(cpf);
+		
+		if(result == null) {
+			throw new NotFoundException("Client not Found");
+		}
+		
+		return result;
+	}
+	
 	public Client create(Client client) {
 		
 		
